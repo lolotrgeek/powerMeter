@@ -1,10 +1,10 @@
 const plug = require('./src/plug-services')
 const store = require('./src/plug-meter-store')
-const params = require('./service-defaults.json')
+const params = require('./params.json')
 
 
-// plug.infoService(defaults)
-plug.emeterService(params)
-// plug.usageService(defaults)
+// plug.infoService(plugs)
+plug.emeterService(plugs)
+// plug.usageService(plugs)
 
 store.plugCosts()

@@ -10,13 +10,15 @@ const cote = require('cote')
 //   debug: true
 // }
 
+const publisher = new cote.Publisher({name: 'plug-publisher'})
+
 exports.usageService = async (params) => {
   const plug = client.getPlug({ host: params.address }),
-    publisher = new cote.Publisher({ name: params.name + '-plug-usage' }),
+    // publisher = new cote.Publisher({ name: params.name + '-plug-usage' }),
     now = new Date(),
     month = now.getMonth() + 1, // returns 0-11, must add one to be consistent
     year = now.getFullYear(),
-    channel = { stats: params.name + '-stats' },
+    channel = params.name + '-usage',
     stats = await plug.emeter.getDayStats(year, month)
     
   if (params.debug) console.log(stats)
@@ -26,8 +28,8 @@ exports.usageService = async (params) => {
 
 exports.emeterService = (params) => {
   const plug = client.getPlug({ host: params.address }),
-    publisher = new cote.Publisher({ name: params.name + '-plug-emeter' }),
-    channel = { emeter: params.name + '-emeter-reading' }
+    // publisher = new cote.Publisher({ name: params.name + '-plug-emeter' }),
+    channel = params.name + '-emeter-reading'
 
   plug.stopPolling() // cleanup previous polling
   plug.startPolling(params.interval)
@@ -43,7 +45,7 @@ exports.emeterService = (params) => {
 
 exports.infoService = (params) => {
   const plug = client.getPlug({ host: params.address }),
-    publisher = new cote.Publisher({ name: params.name + '-plug-info' }),
+    // publisher = new cote.Publisher({ name: params.name + '-plug-info' }),
     channel = {
       power: params.name + '-plug-power',
       usage: params.name + '-plug-usage',
@@ -61,4 +63,3 @@ exports.infoService = (params) => {
   client.on('plug-online', (plug) => { publisher.publish(channel.status, plug + ': Online') })
   client.on('plug-offline', (plug) => { publisher.publish(channel.status, plug + ': Offline') })
 }
-

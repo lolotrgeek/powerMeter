@@ -1,0 +1,19 @@
+'use strict'
+const cote = require('cote'),
+    levelup = require('levelup'),
+    leveldown = require('leveldown')
+
+const defaults = {
+    db: 'computer-plug',
+    channels: ['computer-plug-cost']
+}
+
+exports.storeService = (params) => {
+    if (!params) params = defaults
+    const db = levelup(leveldown('./db/' + params.db))
+    const subscriber = new cote.Subscriber({ name: params.db + '-store' })
+    params.channels.map((channel) => subscriber.on(channel, (data) => {
+        if (params.debug) console.log(channel, data)
+        db.put(Date.now(), data)
+    }))
+}

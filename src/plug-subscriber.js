@@ -20,19 +20,8 @@ const channel = {
 }
 
 
-calcCosts = (reading, params) => {
-    return reading.total_wh / 1000 * utils.getCost(new Date().getMonth() + 1, params)
-}
-
 const subscriber = new cote.Subscriber({ name: params.plug + '-plug-subscriber' })
 
-exports.plugCosts = () => {
-    subscriber.on(channel.emeter, (reading) => {
-        console.log(reading)
-        
-        console.log('total cost : ', total_cost)
-    })
-}
 subscriber.on(channel.stats, (update) => console.log('Stats: ', update))
 subscriber.on(channel.power, (update) => console.log('Power: ' + update))
 subscriber.on(channel.usage, (update) => console.log('Usage: ' + update))

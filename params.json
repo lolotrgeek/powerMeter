@@ -1,0 +1,19 @@
+{
+    "plug": {
+        "name": "computer",
+        "address": "192.168.1.164",
+        "interval": 1000,
+        "debug": false
+    },
+    "costs" : {
+        "plug": "computer",
+        "cost": { "winter": 0.0876, "summer": 0.1258 },
+        "month": { "summer": 6, "winter": 10 }, 
+        "channels": ["computer-emeter-reading"],
+        "debug": true
+    },
+    "store" : {
+        "db": "computer-plug",
+        "channels": ["computer-plug-cost"]
+    }
+}
