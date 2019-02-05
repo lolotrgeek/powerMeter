@@ -12,7 +12,7 @@ const cote = require('cote')
 
 const publisher = new cote.Publisher({name: 'plug-publisher'})
 
-exports.usageService = async (params) => {
+exports.plugUsage = async (params) => {
   const plug = client.getPlug({ host: params.address }),
     // publisher = new cote.Publisher({ name: params.name + '-plug-usage' }),
     now = new Date(),
@@ -26,7 +26,7 @@ exports.usageService = async (params) => {
 
 }
 
-exports.emeterService = (params) => {
+exports.plugEmeter = (params) => {
   const plug = client.getPlug({ host: params.address }),
     // publisher = new cote.Publisher({ name: params.name + '-plug-emeter' }),
     channel = params.name + '-emeter-reading'
@@ -43,7 +43,7 @@ exports.emeterService = (params) => {
 
 }
 
-exports.infoService = (params) => {
+exports.plugInfo = (params) => {
   const plug = client.getPlug({ host: params.address }),
     // publisher = new cote.Publisher({ name: params.name + '-plug-info' }),
     channel = {
