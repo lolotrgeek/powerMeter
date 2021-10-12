@@ -22,3 +22,11 @@ exports.getCost = (month, params) => {
 exports.calcCosts = (reading, costperwh) => {
   return reading.total_wh / 1000 * costperwh
 }
+
+exports.parse = object => {
+  try {
+    return JSON.parse(object)
+  } catch (error) {
+    return object
+  }
+}
