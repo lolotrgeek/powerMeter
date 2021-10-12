@@ -1,19 +1,36 @@
 {
     "plug": {
         "name": "computer",
-        "address": "192.168.1.164",
+        "address": "192.168.1.165",
         "interval": 1000,
-        "debug": true
+        "debug": false
     },
-    "costs" : {
+    "costs": {
         "plug": "computer",
-        "cost": { "winter": 0.0876, "summer": 0.1258 },
-        "month": { "summer": 6, "winter": 10 }, 
-        "channels": ["computer-emeter-reading"],
+        "cost": {
+            "winter": 0.0876,
+            "summer": 0.1258
+        },
+        "month": {
+            "summer": 6,
+            "winter": 10
+        },
+        "channels": [
+            "computer-emeter-reading"
+        ],
         "debug": true
     },
-    "store" : {
+    "store": {
         "db": "computer-plug",
-        "channels": ["computer-plug-cost"]
+        "channels": [
+            "computer-usage",
+            "computer-emeter-reading",
+            "computer-plug-power",
+            "computer-plug-usage",
+            "computer-plug-status"
+        ],
+        "keyEncoding": "utf8",
+        "valueEncoding": "json",
+        "debug": true
     }
 }
