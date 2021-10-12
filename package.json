@@ -9,9 +9,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "cote": "^0.19.0",
-    "leveldown": "^4.0.1",
-    "levelup": "^4.0.0",
-    "tplink-smarthome-api": "^1.2.0"
+    "cote": "^1.0.3",
+    "leveldown": "^6.1.0",
+    "levelup": "^5.1.1",
+    "tplink-smarthome-api": "^3.3.0"
   }
 }
